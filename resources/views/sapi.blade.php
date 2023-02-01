@@ -19,78 +19,39 @@
                         <td>Action</td>
                     </tr>
                     <tr>
-                        <form action="{{ route('')}}">
+                        <form action="{{ route('cows.store')}}" method="POST">
+                        @csrf {{ method_field('POST')}}
                         <td></td>
-                        <td><input type="text" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
-                        <td><input type="date" class="form-control"></td>
-                        <td><input type="number" class="form-control" min="0"></td>
-                        <td><input type="number" class="form-control" min="0"></td>
+                        <td><input type="text" class="form-control" name="kode_sapi"></td>
+                        <td width="150">
+                        <select class="custom-select" id="inputGroupSelect02" name="jenis_kelamin">
+                            <option value="Betina">Betina</option>
+                            <option value="Jantan">Jantan</option>
+                        </select>
+                        </td>
+                        <td><input type="date" class="form-control" name="tgl_lahir"></td>
+                        <td><input type="number" class="form-control" min="0" name="umur"></td>
+                        <td><input type="number" class="form-control" min="0" name="bobot"></td>
                         <td>
-                            <a class="btn btn-primary">Create</a>
+                            <button class="btn btn-primary" type="submit">Create</button>
                         </td>
                         </form>
                     </tr>
+                    <?php $a=1;?>
+                    @foreach($cows as $cow)
                     <tr>
-                        <td>1</td>
-                        <td>00001</td>
-                        <td>Jantan</td>
-                        <td>02-02-2022</td>
-                        <td>1 Tahun</td>
-                        <td>30kg</td>
+                        <td> <?= $a++?></td>
+                        <td>{{ $cow->kode_sapi }}</td>
+                        <td>{{ $cow->jenis_kelamin }}</td>
+                        <td>{{ $cow->tgl_lahir }}</td>
+                        <td>{{ $cow->umur }}</td>
+                        <td>{{ $cow->bobot }}</td>
                         <td>
                             <a class="btn btn-warning">Edit</a>
                             <a class="btn btn-danger mt-2">Delete</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>00002</td>
-                        <td>Jantan</td>
-                        <td>02-02-2022</td>
-                        <td>1 Tahun</td>
-                        <td>30kg</td>
-                        <td>
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger mt-2">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>00003</td>
-                        <td>Jantan</td>
-                        <td>02-02-2022</td>
-                        <td>1 Tahun</td>
-                        <td>30kg</td>
-                        <td>
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger mt-2">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>00004</td>
-                        <td>Jantan</td>
-                        <td>02-02-2022</td>
-                        <td>1 Tahun</td>
-                        <td>30kg</td>
-                        <td>
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger mt-2">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>00004</td>
-                        <td>Jantan</td>
-                        <td>02-02-2022</td>
-                        <td>1 Tahun</td>
-                        <td>30kg</td>
-                        <td>
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger mt-2">Delete</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </table>
             </div>
             </div>
