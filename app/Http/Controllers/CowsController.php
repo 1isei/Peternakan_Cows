@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cows;
 
 class CowsController extends Controller
 {
@@ -13,7 +14,8 @@ class CowsController extends Controller
      */
     public function index()
     {
-        return view('sapi');
+        $cows = Cows::all();
+        return view('sapi',compact('cows'));
     }
 
     /**
@@ -34,7 +36,9 @@ class CowsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cows::create($request->all());
+        $cows = Cows::all();
+        return view('sapi',compact('cows'));
     }
 
     /**
