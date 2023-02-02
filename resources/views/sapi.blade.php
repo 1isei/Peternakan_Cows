@@ -82,8 +82,8 @@
                 <label for="jenis_kelamin">Jenis Kelamin</label>
                 <select class="custom-select" name="jenis_kelamin" id="inputGroupSelect01">
                     <option selected id="jk" value="Jantan"></option>
-                    <option value="jantan">Jantan</option>
-                    <option value="betina">Betina</option>
+                    <option value="Jantan">Jantan</option>
+                    <option value="Betina">Betina</option>
                     
                 </select>
             </div>
@@ -110,5 +110,5 @@
       </div>
         </form>
     </div>
-  </div>
+</div>
 @endsection

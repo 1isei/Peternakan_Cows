@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cows;
-use Redirect,Response;
+use Redirect, Response;
 
 class CowsController extends Controller
 {
@@ -16,7 +16,7 @@ class CowsController extends Controller
     public function index()
     {
         $cows = Cows::all();
-        return view('sapi',compact('cows'));
+        return view('sapi', compact('cows'));
     }
 
     /**
@@ -39,7 +39,7 @@ class CowsController extends Controller
     {
         Cows::create($request->all());
         $cows = Cows::all();
-        return view('sapi',compact('cows'));
+        return view('sapi', compact('cows'));
     }
 
     /**
@@ -61,7 +61,7 @@ class CowsController extends Controller
      */
     public function edit($id)
     {
-        $sapi = Cows::where('kode_sapi',$id)->get();
+        $sapi = Cows::where('kode_sapi', $id)->get();
         // dd($sapi);
         return Response::json($sapi[0]);
     }
@@ -75,7 +75,7 @@ class CowsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cow = Cows::where('kode_sapi',$id)->update($request->except(['_token','_method']));
+        $cow = Cows::where('kode_sapi', $id)->update($request->except(['_token', '_method']));
         return back();
     }
 
@@ -87,7 +87,7 @@ class CowsController extends Controller
      */
     public function destroy($id)
     {
-        Cows::where('kode_sapi',$id)->delete();
+        Cows::where('kode_sapi', $id)->delete();
         return back();
     }
 }

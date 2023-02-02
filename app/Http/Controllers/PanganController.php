@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cows;
+use App\Models\Pangan;
 use Illuminate\Http\Request;
+use App\Models\TransaksiPemasukan;
+use App\Models\TransaksiPengeluaran;
 
 class PanganController extends Controller
 {
@@ -13,7 +17,9 @@ class PanganController extends Controller
      */
     public function index()
     {
-        return view('pangan');
+        return view('pangan', [
+            'pangan' => Pangan::latest()->get()
+        ]);
     }
 
     /**
@@ -34,7 +40,37 @@ class PanganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'jenis_pakan' => 'required',
+            'stock' => 'required'
+        ]);
+
+        Pangan::create($validateData);
+        return back();
+    }
+
+    public function store_pemasukan(Request $request)
+    {
+        $validateData = $request->validate([
+            'tanggal' => 'required',
+            'tipe_pangan' => 'required',
+            'jumlah_pangan' => 'required'
+        ]);
+
+        TransaksiPemasukan::create($validateData);
+        return back();
+    }
+
+    public function store_pengeluaran(Request $request)
+    {
+        $validateData = $request->validate([
+            'tanggal' => 'required',
+            'tipe_pangan' => 'required',
+            'jumlah_pangan' => 'required'
+        ]);
+
+        TransaksiPengeluaran::create($validateData);
+        return back();
     }
 
     /**
@@ -56,7 +92,9 @@ class PanganController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('edit_pangan', [
+            'pangan' => Pangan::firstWhere('kode_pangan', $id)
+        ]);
     }
 
     /**
@@ -68,7 +106,12 @@ class PanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'jenis_pakan' => 'required',
+        ]);
+
+        Pangan::where('kode_pangan', $id)->update($validateData);
+        return back();
     }
 
     /**
@@ -79,6 +122,22 @@ class PanganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pangan::where('kode_pangan', $id)->delete();
+
+        return back();
+    }
+
+    public function pemasukan()
+    {
+        return view('pemasukan', [
+            'pemasukan' => TransaksiPemasukan::latest()->get(),
+        ]);
+    }
+
+    public function pengeluaran()
+    {
+        return view('pengeluaran', [
+            'pengeluaran' => TransaksiPengeluaran::latest()->get(),
+        ]);
     }
 }

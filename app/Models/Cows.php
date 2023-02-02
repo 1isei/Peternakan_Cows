@@ -12,7 +12,7 @@ class Cows extends Model
         'kode_sapi',
         'tgl_lahir',
         'jenis_kelamin',
-        'umur',   
+        'umur',
         'bobot'
     ];
     protected $table = 'cows';
