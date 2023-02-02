@@ -49,7 +49,7 @@
                         <a class="nav-link page-scroll" href="/pangan">Pangan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#blog">Rumah Jaggal</a>
+                        <a class="nav-link page-scroll" href="{{ route('rumahjaggal.index') }}">Rumah Jaggal</a>
                     </li>
                 </ul>
             </div>
