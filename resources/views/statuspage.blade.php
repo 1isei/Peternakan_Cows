@@ -72,15 +72,14 @@
                                         <td>{{ $s->status->status }}</td>
                                         <td>{{ $s->tanggal }}</td>
                                         <td>
-                                            <a class="btn btn-warning">Edit</a>
-                                            <form id="form-delete{{ $s->kode_sapi }}"
-                                                action="{{ route('status.destroy', ['status' => $s->kode_sapi]) }}"
-                                                method="post" style="display: none">
-                                                @csrf
-                                                @method('delete')
-                                            </form>
-                                            <a href="#" type="submit" class="btn btn-danger mt-2"
-                                                onclick="hapus({{ $s->kode_sapi }})">Delete</a>
+                                            <td class="d-flex">
+                                                <a class="btn btn-warning d-inline" id="btnEdit" data-toggle="modal" data-target="#exampleModal" data-whatever="{{$s->id}}" data-id="{{$s->id}}">Edit</a>
+                                                <form action="{{ route('status.destroy',$s->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger ml-2 px-4">Delete</button>
+                                                </form>
+                                            </td>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -91,17 +90,72 @@
             </div>
         </div>
     </section>
-@endsection
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-dark">
+                <div class="modal-header text-dark">
+                    <h5 class="modal-title text-dark" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-form" action="" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-row">
+                            <div class="col-lg-6">
+                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                <select class="custom-select" name="status_id" id="inputGroupSelect01">
+                                    <option value="1" id="status"></option>
+                                    <option value="1">Sehat</option>
+                                    <option value="2">Sakit</option>
 
-@section('js')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2();
-        });
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="tanggal">tanggal</label>
+                                <input class="form-control" type="date" value="" name="tanggal" id="tanggal">
+                            </div>
+                        </div>
 
-        function hapus(id) {
-            document.getElementById("form-delete" + id).submit();
-        }
-    </script>
-@endsection
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    @endsection
+
+    @section('js')
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.select2').select2();
+            });
+
+            $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            /* When click show user */
+            $('body').on('click', '#btnEdit', function () {
+                var kodeSapi = $(this).data('id');
+                $.get('/status/'+ kodeSapi +'/edit', function (data) {
+                    console.log(data);
+                    $('#status').html(data[2]);
+                    $('#status').val(data[1]);
+                    $('#tanggal').val(data[3]);
+                    $('#edit-form').attr('action', '/status/'+data[0]);
+                })
+            });
+
+            });
+        </script>
+    @endsection

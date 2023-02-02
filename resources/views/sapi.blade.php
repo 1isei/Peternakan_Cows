@@ -46,9 +46,13 @@
                         <td>{{ $cow->tgl_lahir }}</td>
                         <td>{{ $cow->umur }}</td>
                         <td>{{ $cow->bobot }}</td>
-                        <td>
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger mt-2">Delete</a>
+                        <td class="d-flex">
+                            <a class="btn btn-warning d-inline" id="btnEdit" data-toggle="modal" data-target="#exampleModal" data-whatever="{{$cow->kode_sapi}}" data-id="{{$cow->kode_sapi}}">Edit</a>
+                            <form action="{{ route('cows.destroy',$cow->kode_sapi) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger ml-2 px-4">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -60,4 +64,54 @@
     </div>
 </section>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-dark">
+      <div class="modal-header text-dark">
+        <h5 class="modal-title text-dark" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-form" action="" method="POST">
+            @csrf
+            @method('PUT')
+          <div class="form-row">
+            <div class="col-lg-6">
+                <label for="jenis_kelamin">Jenis Kelamin</label>
+                <select class="custom-select" name="jenis_kelamin" id="inputGroupSelect01">
+                    <option selected id="jk" value="Jantan"></option>
+                    <option value="jantan">Jantan</option>
+                    <option value="betina">Betina</option>
+
+                </select>
+            </div>
+            <div class="col-lg-6">
+                <label for="tgl_lahir">tgl_lahir</label>
+                <input class="form-control" type="date" value="" name="tgl_lahir" id="tgl_lahir">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-lg-6">
+                <label for="umur">umur</label>
+                <input class="form-control" type="number" value="" name="umur" id="umur">
+            </div>
+            <div class="col-lg-6">
+                <label for="bobot">bobot</label>
+                <input class="form-control" type="number" value="" name="bobot" id="bobot">
+            </div>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-info">save</button>
+      </div>
+        </form>
+    </div>
+  </div>
+@endsection
+@section('js')
+<script src="{{ asset('/js/script.js') }}"></script>
 @endsection

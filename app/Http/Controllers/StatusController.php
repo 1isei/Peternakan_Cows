@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Redirect,Response;
 use App\Models\Cows;
 use Illuminate\Http\Request;
 use App\Models\Detail_status;
@@ -75,7 +76,10 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sapi = Detail_status::find($id);
+        $data = [$sapi->id,$sapi->status_id,$sapi->status->status,$sapi->tanggal];
+        // dd($data);
+        return Response::json($data);
     }
 
     /**
@@ -87,7 +91,14 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $validated = $request->validate([
+            "status_id" => "required",
+            "tanggal" => "required"
+        ]);
+
+        Detail_status::find($id)->update($validated);
+        return back();
     }
 
     /**
@@ -98,7 +109,7 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        Detail_status::where('kode_sapi',$id)->get()->first()->delete();
+        Detail_status::find($id)->delete();
         return back();
     }
 }
