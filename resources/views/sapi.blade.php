@@ -82,9 +82,15 @@
                 <label for="jenis_kelamin">Jenis Kelamin</label>
                 <select class="custom-select" name="jenis_kelamin" id="inputGroupSelect01">
                     <option selected id="jk" value="Jantan"></option>
+<<<<<<< HEAD
                     <option value="jantan">Jantan</option>
                     <option value="betina">Betina</option>
 
+=======
+                    <option value="Jantan">Jantan</option>
+                    <option value="Betina">Betina</option>
+                    
+>>>>>>> pangan
                 </select>
             </div>
             <div class="col-lg-6">
@@ -110,8 +116,13 @@
       </div>
         </form>
     </div>
+<<<<<<< HEAD
   </div>
 @endsection
 @section('js')
 <script src="{{ asset('/js/script.js') }}"></script>
 @endsection
+=======
+</div>
+@endsection
+>>>>>>> pangan

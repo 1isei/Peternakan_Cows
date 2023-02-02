@@ -46,7 +46,7 @@
                         <a class="nav-link page-scroll" href="{{ route('status.index') }}">Status Kesehatan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#faq">Pangan</a>
+                        <a class="nav-link page-scroll" href="/pangan">Pangan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#blog">Rumah Jaggal</a>
