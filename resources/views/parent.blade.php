@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="{{ asset('landing-page/css/default.css')}}" id="theme-color">
@@ -39,7 +40,7 @@
                         <a class="nav-link page-scroll" href="{{route('cows.index')}}">Sapi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#pricing">Status Kesehatan</a>
+                        <a class="nav-link page-scroll" href="{{ route('status.index') }}">Status Kesehatan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#faq">Pangan</a>
@@ -89,5 +90,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="{{ asset('landing-page/js/scripts.js') }}"></script>
+@yield("js")
 </body>
 </html>

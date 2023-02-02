@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Detail_status;
 
 class Status_kesehatan extends Model
 {
@@ -12,5 +13,10 @@ class Status_kesehatan extends Model
         'jumlah_sapi'
     ];
     use HasFactory;
-    protected $table = 'detail_status';
+    protected $table = 'status';
+
+    public function detail()
+    {
+        return $this->hasMany(Detail_status::class,'status_id');
+    }
 }
