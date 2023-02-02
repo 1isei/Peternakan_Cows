@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Knight - Free Bootstrap 4 Product Landing Page Template</title>
+    <title>Peternakan</title>
     <meta name="description"
           content="Knight is a beautiful Bootstrap 4 template for product landing pages."/>
 
@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <!--Get your code at fontawesome.com-->
+    <script src="https://kit.fontawesome.com/bba8725674.js" crossorigin="anonymous"></script>
+    
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="{{ asset('landing-page/css/default.css')}}" id="theme-color">
 </head>

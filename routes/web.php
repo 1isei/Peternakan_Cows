@@ -18,5 +18,6 @@ use App\Http\Controllers\StatusController;
 Route::get('/', function () {
     return view('landingpage');
 });
+
 Route::resource('cows', CowsController::class);
 Route::resource('status', StatusController::class);
