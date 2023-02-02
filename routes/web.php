@@ -17,4 +17,8 @@ use App\Http\Controllers\CowsController;
 Route::get('/', function () {
     return view('landingpage');
 });
+
+Route::get('/sapi', function () {
+    return view('sapi');
+});
 Route::resource('cows', CowsController::class);
