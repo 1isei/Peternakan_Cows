@@ -30,7 +30,7 @@
                         </select>
                         </td>
                         <td><input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"></td>
-                        <td><input type="number" class="form-control" readonly min="0" id="umur" value="" name="umur"></td>
+                        <td><input type="number" class="form-control" min="0" id="umur" value="" name="umur"></td>
                         <td><input type="number" class="form-control" min="0" name="bobot"></td>
                         <td>
                             <button class="btn btn-primary" type="submit">Create</button>
@@ -114,4 +114,3 @@
 @section('js')
 <script src="{{ asset('/js/script.js') }}"></script>
 @endsection
-
