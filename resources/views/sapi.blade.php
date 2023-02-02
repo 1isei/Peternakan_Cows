@@ -76,7 +76,7 @@
       <div class="modal-body">
         <form id="edit-form" action="" method="POST">
             @csrf
-            @method('PUT')    
+            @method('PUT')
           <div class="form-row">
             <div class="col-lg-6">
                 <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -84,7 +84,7 @@
                     <option selected id="jk" value="Jantan"></option>
                     <option value="jantan">Jantan</option>
                     <option value="betina">Betina</option>
-                    
+
                 </select>
             </div>
             <div class="col-lg-6">
@@ -102,7 +102,7 @@
                 <input class="form-control" type="number" value="" name="bobot" id="bobot">
             </div>
           </div>
-          
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -111,4 +111,7 @@
         </form>
     </div>
   </div>
+@endsection
+@section('js')
+<script src="{{ asset('/js/script.js') }}"></script>
 @endsection

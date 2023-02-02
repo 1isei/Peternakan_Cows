@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Cows;
 use Redirect,Response;
+use App\Models\Cows;
+use Illuminate\Http\Request;
+use App\Models\Detail_status;
+use App\Models\Status_kesehatan;
 
-class CowsController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,15 @@ class CowsController extends Controller
     public function index()
     {
         $cows = Cows::all();
-        return view('sapi',compact('cows'));
+        $cow = Detail_status::all();
+        $status = Status_kesehatan::all();
+
+        $sehat = Detail_status::where([['status_id','=', 1],['tanggal','=',date("Y-m-d")]])->get();
+        $sakit = Detail_status::where([['status_id','=', 2],['tanggal','=',date("Y-m-d")]])->get();
+        $distribusi = Detail_status::where([['status_id','=', 3],['tanggal','=',date("Y-m-d")]])->get();
+        // dd(Status_kesehatan::find($status->first->status_id));
+        // dd($sakit);
+        return view('statuspage', compact('status','cow','cows','sehat','sakit','distribusi'));
     }
 
     /**
@@ -37,9 +47,14 @@ class CowsController extends Controller
      */
     public function store(Request $request)
     {
-        Cows::create($request->all());
-        $cows = Cows::all();
-        return view('sapi',compact('cows'));
+        // dd($request);
+        $validated = $request->validate([
+            "kode_sapi" => "required",
+            "status_id" => "required",
+            "tanggal" => "required"
+        ]);
+        Detail_status::create($validated);
+        return back();
     }
 
     /**
@@ -50,7 +65,7 @@ class CowsController extends Controller
      */
     public function show($id)
     {
-        //wow sapiku gendut 😍😘🥰🥰😘🐄🐮🤠😘😘😘😘😘
+        //
     }
 
     /**
@@ -61,9 +76,10 @@ class CowsController extends Controller
      */
     public function edit($id)
     {
-        $sapi = Cows::where('kode_sapi',$id)->get();
-        // dd($sapi);
-        return Response::json($sapi[0]);
+        $sapi = Detail_status::find($id);
+        $data = [$sapi->id,$sapi->status_id,$sapi->status->status,$sapi->tanggal];
+        // dd($data);
+        return Response::json($data);
     }
 
     /**
@@ -75,7 +91,13 @@ class CowsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cow = Cows::where('kode_sapi',$id)->update($request->except(['_token','_method']));
+        // dd($request);
+        $validated = $request->validate([
+            "status_id" => "required",
+            "tanggal" => "required"
+        ]);
+
+        Detail_status::find($id)->update($validated);
         return back();
     }
 
@@ -87,7 +109,7 @@ class CowsController extends Controller
      */
     public function destroy($id)
     {
-        Cows::where('kode_sapi',$id)->delete();
+        Detail_status::find($id)->delete();
         return back();
     }
 }
