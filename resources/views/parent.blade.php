@@ -49,7 +49,10 @@
                         <a class="nav-link page-scroll" href="/pangan">Pangan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="{{ route('allstat') }}">Rumah Jaggal</a>
+                        <a class="nav-link page-scroll" href="{{ route('rumahjaggal.index') }}">Rumah Jaggal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="{{ route('allstat') }}">Status Peternakan</a>
                     </li>
                 </ul>
             </div>

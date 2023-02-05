@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cows;
+use App\Models\Jaggal;
 use Redirect, Response;
 
 class CowsController extends Controller
@@ -89,5 +90,12 @@ class CowsController extends Controller
     {
         Cows::where('kode_sapi', $id)->delete();
         return back();
+    }
+
+    public function rumahjaggal()
+    {
+        $sapidistribusi = Jaggal::all();
+        return view('jagal',compact('sapidistribusi'));
+
     }
 }
