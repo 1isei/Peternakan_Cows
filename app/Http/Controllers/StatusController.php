@@ -7,6 +7,7 @@ use App\Models\Cows;
 use Illuminate\Http\Request;
 use App\Models\Detail_status;
 use App\Models\Status_kesehatan;
+use App\Models\Status;
 
 class StatusController extends Controller
 {
@@ -111,5 +112,10 @@ class StatusController extends Controller
     {
         Detail_status::find($id)->delete();
         return back();
+    }
+    public function summary(){
+        // dd(Status::all());
+        $status = Status::all();
+        return view('mainStatus',compact('status'));
     }
 }

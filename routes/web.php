@@ -27,4 +27,5 @@ Route::post('/pangan3', [PanganController::class, 'store_pengeluaran']);
 Route::get('/history_pemasukan', [PanganController::class, 'pemasukan']);
 Route::get('/history_pengeluaran', [PanganController::class, 'pengeluaran']);
 Route::resource('status', StatusController::class);
+Route::get('/allstat', [StatusController::class, 'summary'])->name('allstat');
 Route::get('/rumahjaggal', [CowsController::class, 'rumahjaggal'])->name('rumahjaggal.index');
