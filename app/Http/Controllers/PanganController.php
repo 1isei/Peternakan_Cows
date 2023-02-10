@@ -63,14 +63,18 @@ class PanganController extends Controller
 
     public function store_pengeluaran(Request $request)
     {
+        $stock = Pangan::firstWhere('kode_pangan', $request->tipe_pangan);
         $validateData = $request->validate([
             'tanggal' => 'required',
             'tipe_pangan' => 'required',
             'jumlah_pangan' => 'required'
         ]);
 
+        if ($request->jumlah_pangan > $stock->stock) {
+           return back()->with('delete', "jumlah Melebihi Stock, stock yang tersedia untuk pakan $stock->jenis_pakan : $stock->stock");
+        }
         TransaksiPengeluaran::create($validateData);
-        return back();
+        return back()->with('create', "data berhasil dibuat");
     }
 
     /**
@@ -138,6 +142,7 @@ class PanganController extends Controller
     {
         return view('pengeluaran', [
             'pengeluaran' => TransaksiPengeluaran::latest()->get(),
+            'pakans' => Pangan::all()
         ]);
     }
 }
